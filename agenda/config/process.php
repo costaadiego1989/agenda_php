@@ -48,6 +48,20 @@ if (!empty($data)) {
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
+    } else if ($data["type"] == "delete") {
+        $id = $data["id"];
+
+        $query = "DELETE FROM contacts WHERE id = :id";
+        $smtm = $conn->prepare($query);
+        $smtm->bindParam(":id", $id);
+
+        try {
+            $smtm->execute();
+            $_SESSION["msg"] = "Contato deletado com sucesso!";
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+
     }
     // Redirecionando
     header("Location:" . $BASE_URL . "../index.php");

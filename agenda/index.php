@@ -1,14 +1,14 @@
 <?php
-    include_once("templates/header.php");
+include_once("templates/header.php");
 ?>
 
 <div class="container">
-    <?php if(isset($print_msg) && $print_msg != ""): ?>
+    <?php if (isset($print_msg) && $print_msg != "") : ?>
         <p id="msg"><?= $print_msg ?></p>
     <?php endif; ?>
 
     <h1 id="main-title">Minha Agenda</h1>
-    <?php if(count($contacts) > 0): ?>
+    <?php if (count($contacts) > 0) : ?>
         <table class="table" id="contacts-table">
             <thead>
                 <tr>
@@ -21,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($contacts as $contact): ?>
+                <?php foreach ($contacts as $contact) : ?>
                     <tr>
                         <td scope="row"><?= $contact["id"] ?></td>
                         <td scope="row"><?= $contact["name"] ?></td>
@@ -31,17 +31,23 @@
                         <td class="actions">
                             <a href="<?= $BASE_URL ?>user.php?id=<?= $contact["id"] ?>"><i class="fas fa-eye check-icon"></i></a>
                             <a href="<?= $BASE_URL ?>edit.php?id=<?= $contact["id"] ?>"><i class="fas fa-edit edit-icon"></i></a>
-                            <button type="submit" class="delete-btn"><i class="fas fa-times delete-icon"></i></button>
+                            <div>
+                                <form action="<?= $BASE_URL ?>config/process.php" method="POST">
+                                    <input type="hidden" name="type" value="delete" />
+                                    <input type="hidden" name="id" value="<?= $contact["id"] ?>" />
+                                    <button type="submit" class="delete-btn"><i class="fas fa-times delete-icon"></i></button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-    <?php else: ?>
+    <?php else : ?>
         <p>Não há contatos cadastrados em sua agenda. <a href="<?= $BASE_URL ?>create.php">Clique aqui para adicionar seu primeiro contato.</a></p>
     <?php endif; ?>
 </div>
 
 <?php
-    include_once("templates/footer.php");
+include_once("templates/footer.php");
 ?>
