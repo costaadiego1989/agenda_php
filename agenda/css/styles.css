@@ -16,8 +16,8 @@
   
   /* HOME */
   #contacts-table {
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 960px;
+    margin: 3rem auto 4rem auto;
   }
   
   #contacts-table thead {

@@ -9,4 +9,4 @@ $query = "SELECT * FROM contacts";
 $smtm = $conn->query($query);
 $smtm->execute();
 
-$data = $smtm->fetchAll();
+$contacts = $smtm->fetchAll();
